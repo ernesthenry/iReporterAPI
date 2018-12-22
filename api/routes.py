@@ -20,6 +20,11 @@ def create_redflag():
 	return jsonify({"status": 201, "data": red_flag.format_record()})
 
 
+@app.route("/api/v1/red-flags", methods = [ "GET" ])
+def get_all_red_flags():
+	if len(my_red_flags) > 0:
+		return jsonify({ "status": 200, "data": [red_flag for red_flag in my_red_flags]})
+	return jsonify({ "status": 400, "Error": "There are no records"})
  
 
 
