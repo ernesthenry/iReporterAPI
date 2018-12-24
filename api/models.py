@@ -6,6 +6,7 @@ my_red_flags = []
 class Redflag:
 
     def __init__(self, createdBy, _type, place, status, Images, Videos, comment):
+        print(len(my_red_flags), "000000")
 
         self.id = len(my_red_flags) + 1
         self.createdOn = datetime.now()
