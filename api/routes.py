@@ -69,6 +69,22 @@ def get_a_redflag(flag_id):
         "Error": " Invalid record"
     	})
 
+
+# API end point to delete a specific record
+@app.route("/api/v1/red-flags/<int:flag_id>", methods=["DELETE"])
+def delete_red_flag(flag_id):
+    red_flag_record = [flag for flag in my_red_flags if flag['id'] == flag_id]
+    if len(my_red_flags) == 0:
+        return jsonify({
+        	"status": "400",
+            "Error": "Invalid request"
+        	})
+    my_red_flags.remove(red_flag_record[0])
+    return jsonify({
+    	'result': True
+    	}), 200
+
+
  
 
 
