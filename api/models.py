@@ -7,7 +7,7 @@ class Redflag:
 
     def __init__(self, createdBy, _type, place, status, Images, Videos, comment):
 
-        self.id = len(my_red_flags) + 1
+        self._id = len(my_red_flags) + 1
         self.createdOn = datetime.now()
         self.createdBy = createdBy
         self.type = _type
@@ -21,7 +21,7 @@ class Redflag:
 
         return {
 
-            "id": self.id,
+            "id": self._id,
             "createdOn": self.createdOn,
             "createdBy": self.createdBy,
             "type": self.type,
