@@ -103,5 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 .git.exe
-iReporterAPI2.exe
 .vscode
+iReporterAPI2.exe
