@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from models import Redflag, my_red_flags
+from api.models import Redflag, my_red_flags
 
 
 app = Flask(__name__)
@@ -39,6 +39,7 @@ def create_redflag():
         "id":  red_flag._id, 
         "Message": "Created red-flag record"
         }]}), 200
+
 
  
 
