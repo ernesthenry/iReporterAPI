@@ -117,8 +117,11 @@ class TestRedFlag(BaseTest):
 			"/api/v1/red-flags/1"
 			)
 		self.assertEqual(response.status_code, 204)
-		#response = self.client.get("/api/v1/red-flags")
-		#self.assertEqual(response.status_code, 404)
+		record ={}
+		response = self.client.delete("/api/v1/red-flags/1",
+		content_type = "application/json",
+		data =json.dumps(record))
+		self.assertEqual(len(my_red_flags), 0)
 
 
 	def test_edit_mycomment(self):
