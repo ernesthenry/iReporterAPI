@@ -1,8 +1,9 @@
 from flask import Flask, jsonify, request
-from api.models import Redflag, my_red_flags
+from api.models.red_flag_incident import Redflag, my_red_flags
+from api import app
 
 
-app = Flask(__name__)
+
 
 @app.route("/")
 def home():
@@ -16,19 +17,33 @@ def home():
 #API end point to create a red-flag record
 @app.route("/api/v1/red-flags", methods=["POST"])
 def create_redflag():
-    if not request.json:
-        return jsonify({
-            "Error": "There is no data returned from the request",
-            "status": 400
-            }), 400
     data = request.get_json()
-    if 'createdBy' not in data:
-        return jsonify({'status': 400, 'Error': 'The information is missing'}), 400
+
+    created_by = data.get("createdBy")
+    incident_type = data.get("type")
+    red_flag_status = data.get("status")
+    images = data.get("Images")
+    red_flag_location = data.get("location")
+    videos = data.get("Videos")
+    comments = data.get("comment")
+
+    if not created_by or not incident_type or not red_flag_location \
+    or not red_flag_status or not images or not videos or not comments:
+        return jsonify({
+            "Error": "Required field is missing"
+        }), 400
+        
+    for comment in my_red_flags:
+        if comment["comment"] == comments:
+            return jsonify({
+            "Error": "Redflag record exists",
+            "status": 400
+
+        }), 400 
 
     red_flag = Redflag(
-    		data["createdBy"], data["type"],
-        	data["location"], data["status"], data["Images"],
-        	data["Videos"], data["comment"]
+    		created_by,  incident_type, red_flag_location, red_flag_status, images,
+        	videos, comments
        	   )
     my_red_flags.append(
     	red_flag.format_record()
@@ -37,13 +52,12 @@ def create_redflag():
     	return jsonify({
     		"status": 400, 
     		"Error": "Invalid request"
-    		})
+    		}), 400
     return jsonify({
-    	"status": 201,
-    	"data": [{ 
-        "id": red_flag._id,
-        "Message": "Created red-flag record"
-        }]}), 201
+    	"data": red_flag.format_record(),  
+        "status": 201,            
+        "Message": "Created red-flag record" 
+        }), 201
 
 
 
@@ -80,13 +94,13 @@ def delete_red_flag(flag_id):
     red_flag_record = [flag for flag in my_red_flags if flag['id'] == flag_id]
     if len(my_red_flags) == 0:
         return jsonify({
-        	"status": "400",
-            "Error": "Invalid request"
-        	}), 404
+        	"status": "200",
+            "Error": "There is nothing found"
+        	}), 200
     my_red_flags.remove(red_flag_record[0])
     return jsonify({
     	'Result': "record was deleted successfully"
-    	}), 204
+    	}), 200
 
 
 
@@ -100,12 +114,9 @@ def edit_red_flag_location(flag_id):
         if red_flag_record['id'] == flag_id:
             red_flag_record["location"] = data["location"]
             return jsonify({
-                "status" : 200, 
-                "data": [{
-                    "id": "flag_id", 
-                    "message": "Updated red-flag's record location",
-                    "red_flag":red_flag_record
-                    }]
+                "data": red_flag_record,
+                "status" : 200,
+                "message": "Updated red-flag's record location"
             }), 200
     
     
@@ -113,7 +124,7 @@ def edit_red_flag_location(flag_id):
         return jsonify({
                          "status": "400",
                         "Error": "Red flag is not available"
-                        })
+                        }), 400
 
 # API end point to edit comment of a  red-flag record
 @app.route("/api/v1/red-flags/<int:flag_id>/comment", methods=["PATCH"])
@@ -123,11 +134,9 @@ def edit_red_flag_comment(flag_id):
         if red_flag_record['id'] == flag_id:
             red_flag_record["comment"]= data["comment"]
             return jsonify({
-                "status" : 200, 
-                "data": [{
-                    "id": "flag_id",
-                    "message": "Updated red-flag's record comment"
-                    }]
+               "data": red_flag_record,
+               "status" : 200, 
+                "message": "Updated red-flag's record comment"
                 }), 200
     if not red_flag_record:
         return jsonify({

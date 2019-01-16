@@ -105,3 +105,4 @@ venv.bak/
 .git.exe
 .vscode
 iReporterAPI2.exe
+*.pyc
