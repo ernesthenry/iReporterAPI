@@ -2,13 +2,9 @@ from flask import Flask, jsonify, request
 from api.models.red_flag_incident import Redflag, my_red_flags
 from api import app
 
-
-
-
 @app.route("/")
 def home():
     """A welcoming route to my api"""
-
     return jsonify({
         'message': 'Welcome to ernest\'s iReporter app.',
         'status': '200'
@@ -40,7 +36,7 @@ def create_redflag():
             "status": 400
 
         }), 400 
-
+        
     red_flag = Redflag(
     		created_by,  incident_type, red_flag_location, red_flag_status, images,
         	videos, comments
@@ -59,9 +55,7 @@ def create_redflag():
         "Message": "Created red-flag record" 
         }), 201
 
-
-
-#API end point to fetch all records
+#API end point to fetch all records """
 @app.route("/api/v1/red-flags", methods=["GET"])
 def get_all_red_flags():
     if len(my_red_flags) > 0:
@@ -102,14 +96,10 @@ def delete_red_flag(flag_id):
     	'Result': "record was deleted successfully"
     	}), 200
 
-
-
-
  # API end point to edit location of  red-flag record
 @app.route("/api/v1/red-flags/<int:flag_id>/location", methods=["PATCH"])
 def edit_red_flag_location(flag_id):
     data = request.get_json()
-
     for red_flag_record in my_red_flags:
         if red_flag_record['id'] == flag_id:
             red_flag_record["location"] = data["location"]
@@ -117,9 +107,7 @@ def edit_red_flag_location(flag_id):
                 "data": red_flag_record,
                 "status" : 200,
                 "message": "Updated red-flag's record location"
-            }), 200
-    
-    
+            }), 200       
     if not red_flag_record:
         return jsonify({
                          "status": "400",
