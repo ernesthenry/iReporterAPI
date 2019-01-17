@@ -78,6 +78,10 @@ class TestRedFlag(BaseTest):
 		self.assertEqual(response.content_type, "application/json")
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response_data["status"], 200)
+		response = self.client.get(
+			'/api/v1/red-flags/100',
+			content_type = "application/json")
+		assert response.status_code == 404
 
 
 	def test_edit_location_and_comment(self):

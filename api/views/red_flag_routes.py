@@ -85,8 +85,8 @@ def get_a_redflag(flag_id):
         	}), 200
     return jsonify({
     	"status": 404,
-        "Error": " Invalid record"
-    	})
+        "Error": " Record does not exist"
+    	}), 404
 
 # API end point to delete a specific record
 @app.route("/api/v1/red-flags/<int:flag_id>", methods=["DELETE"])
