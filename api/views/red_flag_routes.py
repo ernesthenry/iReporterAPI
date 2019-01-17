@@ -38,8 +38,7 @@ def create_redflag():
         }), 400 
         
     red_flag = Redflag(
-    		created_by,  incident_type, red_flag_location, red_flag_status, images,
-        	videos, comments
+    		createdBy = created_by,  _type = incident_type, place = red_flag_location, status = red_flag_status, Images = images,Videos = videos, comment = comments
        	   )
     my_red_flags.append(
     	red_flag.format_record()
