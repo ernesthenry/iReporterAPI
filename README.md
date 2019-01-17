@@ -12,16 +12,16 @@ This repository contains my code for the Andela iReporter Challenge 2.
 * [Python 3.5](https://www.python.org)
 * [Flask](http://flask.pocoo.org/)
 * [Heroku](https://www.heroku.com/)
-* [Travis C!](https://travis-ci.org/)
+* [Travis CI](https://travis-ci.org/)
 * [Coveralls](https://coveralls.io/)
 * [Code Climate](https://codeclimate.com/)
 * [Data structures in Python](https://docs.python.org/3/tutorial/datastructures.html)
 
 
 
-### Getting Started
+## Getting Started
 
-## Clone the project
+### Clone the project
 
 ```
 git clone https://github.com/ernesthenry/iReporterAPI.git
@@ -73,9 +73,9 @@ pytest
 |PATCH| /api/v1/red-flags/<int:flag_id>/location |Update location of a specific red flag record|
 
 
-### Author of the codebase
+## Author of the codebase
 
-# Kato Ernest Henry 
+##### Kato Ernest Henry 
 
 
 ## Deployment
