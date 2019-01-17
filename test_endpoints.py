@@ -2,7 +2,10 @@ import unittest
 import json
 from api.views.red_flag_routes import app, my_red_flags
 
+""" Module for running my tests """
+
 class BaseTest(unittest.TestCase):
+	""" Class for test data"""
 	def setUp(self):
 		self.client = app.test_client()
 		self.sample_record_data = {
@@ -16,6 +19,7 @@ class BaseTest(unittest.TestCase):
             }
 
 class TestRedFlag(BaseTest):
+	""" Test for creating a red-flag record"""
 	def test_create_red_flag(self):
 		response = self.client.post(
 			"/api/v1/red-flags",
