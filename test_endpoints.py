@@ -27,7 +27,7 @@ class TestRedFlag(BaseTest):
 		self.assertIn(b"Created red-flag record", response.data)
 	
 	def test_home(self):
-		""" Testing for  data at the home route """
+		""" Testing for getting the data at my home route """
 		response = self.client.get('/')
 		assert b'Welcome to ernest\'s iReporter app.' in response.data
 		assert response.status_code == 200
