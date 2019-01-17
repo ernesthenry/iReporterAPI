@@ -19,9 +19,9 @@ This repository contains my code for the Andela iReporter Challenge 2.
 
 
 
-## Getting Started
+### Getting Started
 
-# Clone the project
+## Clone the project
 
 ```
 git clone https://github.com/ernesthenry/iReporterAPI.git
@@ -75,7 +75,7 @@ pytest
 
 ### Author of the codebase
 
-** Kato Ernest Henry **
+# Kato Ernest Henry 
 
 
 ## Deployment
