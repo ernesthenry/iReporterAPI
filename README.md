@@ -19,7 +19,16 @@ This repository contains my code for the Andela iReporter Challenge 2.
 
 
 
+## Getting Started
+
+# Clone the project
+
+```
+git clone https://github.com/ernesthenry/iReporterAPI.git
+```
+
 ## Installation
+
 
 ### create a virtual environment:
 
@@ -45,6 +54,12 @@ pip install -r requirements.txt
 python app.py 
 ```
 
+### Run Tests
+
+```
+pytest
+```
+
 
 ## API Endpoints
 
@@ -56,6 +71,11 @@ python app.py
 |DELETE| /api/v1/red-flags/<int:flag_id>|Delete a specific red flag record|
 |PATCH| /api/v1/red-flags/<int:flag_id>/comment |Update comment of a specific red flag record|
 |PATCH| /api/v1/red-flags/<int:flag_id>/location |Update location of a specific red flag record|
+
+
+### Author of the codebase
+
+** Kato Ernest Henry **
 
 
 ## Deployment
