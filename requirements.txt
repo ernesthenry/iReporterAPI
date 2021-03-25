@@ -33,7 +33,7 @@ pylint==1.9.3
 pyOpenSSL==18.0.0
 pytest==4.1.0
 pytest-cov==2.6.1
-PyYAML==3.13
+PyYAML==5.4
 requests==2.21.0
 scandir==1.9.0
 singledispatch==3.4.0.3
